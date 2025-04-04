@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Background</title>
+    <title>Video Background with Sound</title>
     <style>
         body {
             margin: 0;
@@ -18,11 +18,51 @@
             height: 100%;
             object-fit: cover;
         }
+        audio {
+            display: none; /* Hide the audio player */
+        }
+        .overlay-text {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+        }
     </style>
 </head>
 <body>
     <video autoplay loop muted>
         <source src="https://cdn.discordapp.com/attachments/1161549573832052816/1357505918819893298/videoplayback.mp4?ex=67f07368&is=67ef21e8&hm=fe542de1a3081d838f932aa8232fe2c38191523b3ca065a5d833fe0cb0d82896&" type="video/mp4">
     </video>
+
+    <audio id="background-audio" autoplay loop>
+        <source src="https://cdn.discordapp.com/attachments/1161549573832052816/1357506927969439744/videoplayback.mp3?ex=67f07458&is=67ef22d8&hm=d9d83055b3d7d7ac4862148aac316c506b72278a416d5db449be0bf2dd41a160&" type="audio/mp3">
+    </audio>
+
+    <div class="overlay-text">discord.gg/UAEE</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let audio = document.getElementById("background-audio");
+
+            // Attempt to play the audio (some browsers block autoplay)
+            audio.play().catch(() => {
+                console.log("Autoplay blocked. Waiting for user interaction.");
+            });
+
+            // Ensure audio starts on user interaction if blocked
+            document.addEventListener("click", function() {
+                if (audio.paused) {
+                    audio.play();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
